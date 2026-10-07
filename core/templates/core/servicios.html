@@ -16,18 +16,14 @@
         <th class="text-left px-4 py-2">Precio</th>
       </tr>
     </thead>
-    <tbody>
-      <!-- {% for servicio in servicios %}: repite este <tr> una vez por cada elemento de la lista -->
-      {% for servicio in servicios %}
-      <tr class="border-t border-slate-200">
-        <!-- {{ servicio.nombre }}: accede a la clave 'nombre' del diccionario actual -->
-        <td class="px-4 py-2">{{ servicio.titulo }}</td>
-        <!-- {{ servicio.precio }}: accede a la clave 'precio' del diccionario actual -->
-        <td class="px-4 py-2">${{ servicio.precio }}</td>
+  <tbody>
+    {% for servicio in servicios %}
+      <tr>
+        <td>{{ servicio.titulo }}</td>
+        <td>${{ servicio.precio }}</td>
       </tr>
-      <!-- {% endfor %}: cierra el bucle, obligatorio en Django (a diferencia de Python) -->
-      {% endfor %}
-    </tbody>
+    {% endfor %}
+  </tbody>
   </table>
 </body>
 </html>
