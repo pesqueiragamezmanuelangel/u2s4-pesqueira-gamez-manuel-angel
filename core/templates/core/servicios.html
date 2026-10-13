@@ -16,14 +16,23 @@
         <th class="text-left px-4 py-2">Precio</th>
       </tr>
     </thead>
-  <tbody>
-    {% for servicio in servicios %}
-      <tr>
-        <td>{{ servicio.titulo }}</td>
-        <td>${{ servicio.precio }}</td>
-      </tr>
-    {% endfor %}
-  </tbody>
+<!-- href a la URL con name="crear_servicio" que vas a registrar en el paso 05 -->
+<a href="{% url 'crear_servicio' %}" class="inline-block mb-4 bg-blue-600 text-white px-4 py-2 rounded-lg">+ Nuevo servicio</a>
+
+<tbody>
+  {% for servicio in servicios %}
+  <tr class="border-t border-slate-200">
+    <td class="px-4 py-2">{{ servicio.titulo }}</td>
+    <td class="px-4 py-2">${{ servicio.precio }}</td>
+    <!-- {% url 'editar_servicio' servicio.pk %}: arma la URL /servicios/<id>/editar/ -->
+    <td class="px-4 py-2">
+      <a href="{% url 'editar_servicio' servicio.pk %}" class="text-blue-600 underline">Editar</a>
+      <!-- {% url 'eliminar_servicio' servicio.pk %}: arma la URL /servicios/<id>/eliminar/ -->
+      <a href="{% url 'eliminar_servicio' servicio.pk %}" class="text-red-600 underline ml-3">Eliminar</a>
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>
   </table>
 </body>
 </html>
