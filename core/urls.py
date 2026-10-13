@@ -4,6 +4,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('', views.inicio, name='inicio'),
     # /servicios/: la vista de listado que ya existía desde la Semana 3
     path('servicios/', views.servicios, name='servicios'),
     # /servicios/nuevo/: formulario en blanco para crear un registro
