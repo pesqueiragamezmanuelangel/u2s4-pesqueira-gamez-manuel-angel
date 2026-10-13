@@ -7,14 +7,11 @@ from .forms import ServicioForm
 from .models import Servicio
 
 # nueva función de vista, además de "inicio" que ya tenías
+# servicios: la vista que responde en /servicios/
 def servicios(request):
-    # lista_servicios: datos de ejemplo en Python — todavía no vienen de MySQL
-    lista_servicios = [
-        {'nombre': 'Tutorías de programación', 'precio': 150},
-        {'nombre': 'Diseño de logotipos', 'precio': 300},
-        {'nombre': 'Repostería por encargo', 'precio': 120},
-    ]
-    # se la pasamos a la plantilla con la clave 'servicios'
+    # .objects.all(): pide TODOS los servicios a MySQL (Django lo traduce a SELECT * FROM core_servicio)
+    lista_servicios = Servicio.objects.all()
+    # entrega la lista a la plantilla con el nombre "servicios", igual que en la Semana 3
     return render(request, 'core/servicios.html', {'servicios': lista_servicios})
 
 # @login_required: si nadie inició sesión, Django redirige solo al login
