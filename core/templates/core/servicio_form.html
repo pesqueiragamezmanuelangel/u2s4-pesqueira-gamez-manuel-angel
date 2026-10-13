@@ -1,0 +1,29 @@
+<h1 class="text-2xl font-bold mb-4">{{ titulo_pagina }}</h1>
+<!-- method="POST": este formulario envía datos que van a modificar la base de datos -->
+<form method="POST" class="space-y-4 max-w-md">
+  <!-- csrf_token: obligatorio en todo <form method="POST"> de Django -->
+  {% csrf_token %}
+  <!-- form.as_p: dibuja cada campo del formulario envuelto en un <p>, con sus errores si los hay -->
+  {{ form.as_p }}
+  <!-- type="submit": botón que dispara el envío del formulario -->
+  <button type="submit" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg">
+    Guardar
+  </button>
+</form>
+<!-- href a la URL con name="crear_servicio" que vas a registrar en el paso 05 -->
+<a href="{% url 'crear_servicio' %}" class="inline-block mb-4 bg-blue-600 text-white px-4 py-2 rounded-lg">+ Nuevo servicio</a>
+
+<tbody>
+  {% for servicio in servicios %}
+  <tr class="border-t border-slate-200">
+    <td class="px-4 py-2">{{ servicio.titulo }}</td>
+    <td class="px-4 py-2">${{ servicio.precio }}</td>
+    <!-- {% url 'editar_servicio' servicio.pk %}: arma la URL /servicios/<id>/editar/ -->
+    <td class="px-4 py-2">
+      <a href="{% url 'editar_servicio' servicio.pk %}" class="text-blue-600 underline">Editar</a>
+      <!-- {% url 'eliminar_servicio' servicio.pk %}: arma la URL /servicios/<id>/eliminar/ -->
+      <a href="{% url 'eliminar_servicio' servicio.pk %}" class="text-red-600 underline ml-3">Eliminar</a>
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>
